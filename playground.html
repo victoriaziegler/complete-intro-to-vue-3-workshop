@@ -9,14 +9,34 @@
 </head>
 
 <body>
+  <h1>Emperor's New Groove</h1>
   <div id="app">
-    <h1>Counter</h1>
-    <p>{{ count }}</p>
-    <button v-on:click="incrementCount">Increment Count</button>
+    <h2>List of Characters</h2>
+    <p v-if="listOfCharacters.length == 0">There are no characters</p>
+    <ul>
+      <li v-for="character in listOfCharacters">
+        <p>{{ character }}</p>
+        <button v-on:click="createFavoritesList(character)">Favorite</button>
+      </li>
+    </ul>
+    <p>
+      <span v-for="(character, index) in listOfCharacters">
+        {{ character }}{{ index === listOfCharacters.length - 1 ? '' : ', '}}
+      </span>
+    </p>
+    <hr>
+    <h2>Add a Character</h2>
     <div>
-      <label for="incrementAmount">Increment by:</label>
-      <input type="number" v-model="incrementAmount" />
+      <label for="addCharacter">Add Character: </label>
+      <input type="text" v-model="newCharacter" @keyup.enter="addCharacter(newCharacter)" />
+      <button v-on:click=" addCharacter">Add</button>
     </div>
+    <h2>List Favorite Characters</h2>
+    <hr>
+    <p v-if="favoritesList.length == 0">Favorites List is Empty</p>
+    <ul>
+      <li v-for="favorite in favoritesList">{{ favorite }}</li>
+    </ul>
   </div>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script>
@@ -24,13 +44,17 @@
 
     const app = createApp({
       data: () => ({
-        count: 10,
-        incrementAmount: 8
-
+        favoritesList: [],
+        newCharacter: '',
+        listOfCharacters: ['Kuzco', 'Pacha', 'Ezma', 'Kronk']
       }),
       methods: {
-        incrementCount() {
-          this.count += this.incrementAmount
+        addCharacter() {
+          this.listOfCharacters.push(this.newCharacter)
+          this.newCharacter = ''
+        },
+        createFavoritesList(character) {
+          this.favoritesList.push(character)
         }
       }
     })
