@@ -9,19 +9,14 @@
 </head>
 
 <body>
-  <h1>Emperor's New Groove</h1>
   <div id="app">
-    <p v-if="listOfCharacters.length == 0">There are no characters</p>
-    <ul>
-      <li v-for="character in listOfCharacters">
-        <p v-if="character.length > 4">{{ character }}</p>
-      </li>
-    </ul>
-    <p>
-      <span v-for="(character, index) in listOfCharacters">
-        {{ character }}{{ index === listOfCharacters.length - 1 ? '' : ', '}}
-      </span>
-    </p>
+    <h1>Counter</h1>
+    <p>{{ count }}</p>
+    <button v-on:click="incrementCount">Increment Count</button>
+    <div>
+      <label for="incrementAmount">Increment by:</label>
+      <input type="number" v-model="incrementAmount" />
+    </div>
   </div>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script>
@@ -29,8 +24,15 @@
 
     const app = createApp({
       data: () => ({
-        listOfCharacters: ['Kuzco', 'Pacha', 'Ezma', 'Kronk']
-      })
+        count: 10,
+        incrementAmount: 8
+
+      }),
+      methods: {
+        incrementCount() {
+          this.count += this.incrementAmount
+        }
+      }
     })
     app.mount('#app')
   </script>
