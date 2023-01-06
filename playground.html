@@ -1,10 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Playground — Complete Intro to Vue 3</title>
-  </head>
-  <body></body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Playground — Complete Intro to Vue 3</title>
+</head>
+
+<body>
+  <h1>Emperor's New Groove</h1>
+  <div id="app">
+    <p v-if="listOfCharacters.length == 0">There are no characters</p>
+    <ul>
+      <li v-for="character in listOfCharacters">
+        <p v-if="character.length > 4">{{ character }}</p>
+      </li>
+    </ul>
+    <p>
+      <span v-for="(character, index) in listOfCharacters">
+        {{ character }}{{ index === listOfCharacters.length - 1 ? '' : ', '}}
+      </span>
+    </p>
+  </div>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp } = Vue
+
+    const app = createApp({
+      data: () => ({
+        listOfCharacters: ['Kuzco', 'Pacha', 'Ezma', 'Kronk']
+      })
+    })
+    app.mount('#app')
+  </script>
+</body>
+
 </html>
