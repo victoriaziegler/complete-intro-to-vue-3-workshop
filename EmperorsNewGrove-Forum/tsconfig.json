@@ -12,7 +12,7 @@
         "./src/*"
       ]
     },
-    "allowJS": true
+    "allowJs": true
   },
   "references": [
     {

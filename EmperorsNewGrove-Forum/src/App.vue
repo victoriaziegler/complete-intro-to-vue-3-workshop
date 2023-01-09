@@ -43,6 +43,7 @@ export default {
 </script>
 
 <template>
+  <h1>Emperor's New Groove</h1>
   <h2>List of Characters</h2>
   <p v-if="listOfCharacters.length == 0">There are no characters</p>
   <ul>
@@ -82,30 +83,5 @@ export default {
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-}
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>
