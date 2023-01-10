@@ -1,5 +1,10 @@
 <script>
+import Counter from "./components/Counter.vue"
+
 export default {
+  components: {
+    Counter,
+  },
   data: () => ({
     favoritesList: [],
     newCharacter: { name: '', species: [] },
@@ -43,6 +48,8 @@ export default {
 </script>
 
 <template>
+  <Counter />
+  <hr>
   <h1>Emperor's New Groove</h1>
   <h2>List of Characters</h2>
   <p v-if="listOfCharacters.length == 0">There are no characters</p>
