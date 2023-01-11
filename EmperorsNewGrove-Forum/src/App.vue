@@ -37,6 +37,12 @@ export default {
     },
     showUserPage() {
       this.currentPage = "User"
+    },
+    showListCharactersPage() {
+      this.currentPage = "Characters"
+    },
+    showCounterPage() {
+      this.currentPage = "Counter"
     }
   },
 }
@@ -51,23 +57,15 @@ export default {
       <a href="#" @click.prevent="showHomePage">Home</a>
       <a href="#" @click.prevent="showLoginPage">Login</a>
       <a href="#" @click.prevent="showUserPage">User</a>
+      <a href="#" @click.prevent="showListCharactersPage">Characters</a>
+      <a href="#" @click.prevent="showCounterPage">Counter</a>
     </nav>
   </header>
   <HomePage v-if="currentPage === 'Home'" />
   <LoginPage v-else-if="currentPage === 'Login'" />
   <UserPage v-else-if="currentPage === 'User'" />
-  <BaseLayout>
-    <template v-slot:one>
-      <AddCharacter :characters="listOfCharacters" />
-    </template>
-    <template v-slot:two>
-      <Statistics :characters="listOfCharacters" />
-    </template>
-  </BaseLayout>
-  <hr>
-  <ListCharacters :characters="listOfCharacters" />
-  <hr>
-  <Counter />
+  <ListCharacters v-else-if="currentPage === 'Characters'" :characters="listOfCharacters" />
+  <Counter v-else-if="currentPage === 'Counter'" />
 </template>
 
 <style>

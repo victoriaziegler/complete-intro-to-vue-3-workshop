@@ -1,4 +1,8 @@
 <script>
+import BaseLayout from "./BaseLayout.vue"
+import AddCharacter from "./AddCharacter.vue"
+import Statistics from "./CharacterStatistics.vue"
+
 export default {
     props: ["characters"],
     data: () => ({
@@ -8,6 +12,11 @@ export default {
         createFavoritesList(character) {
             this.favoritesList.push(character)
         }
+    },
+    components: {
+        Statistics,
+        AddCharacter,
+        BaseLayout,
     },
 }
 </script>
@@ -33,4 +42,12 @@ export default {
     <ul>
         <li v-for="favorite in favoritesList">{{ favorite.name }}</li>
     </ul>
+    <BaseLayout>
+        <template v-slot:one>
+            <AddCharacter :characters="characters" />
+        </template>
+        <template v-slot:two>
+            <Statistics :characters="characters" />
+        </template>
+    </BaseLayout>
 </template>
