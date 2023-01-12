@@ -2,6 +2,16 @@
 import UserCard from "./UserCard.vue";
 import { reactive } from "vue";
 
+defineProps({
+    title: {
+        type: String,
+        default: 'Users'
+    }
+})
+
+defineEmits(['update-user-list'])
+// just to show as an example if we had a button to update the user list and send data
+
 const state = reactive({
     userList: [],
 })
@@ -17,7 +27,7 @@ state.userList = await fetchUsers()
 
 <template>
     <main>
-        <h1>Users</h1>
+        <h1>{{ title }}</h1>
         <ul>
             <UserCard v-for="user in state.userList" :user="user" :key="`user-${user.id}`" />
         </ul>
