@@ -28,6 +28,11 @@ export default {
     Counter,
     BaseLayout,
   },
+  computed: {
+    renderPage() {
+      return this.currentPage + "Page"
+    }
+  },
   methods: {
     showHomePage() {
       this.currentPage = "Home"
@@ -61,11 +66,12 @@ export default {
       <a href="#" @click.prevent="showCounterPage">Counter</a>
     </nav>
   </header>
-  <HomePage v-if="currentPage === 'Home'" />
-  <LoginPage v-else-if="currentPage === 'Login'" />
-  <UserPage v-else-if="currentPage === 'User'" />
-  <ListCharacters v-else-if="currentPage === 'Characters'" :characters="listOfCharacters" />
+  <ListCharacters v-if="currentPage === 'Characters'" :characters="listOfCharacters" />
   <Counter v-else-if="currentPage === 'Counter'" />
+  <Suspense>
+    <component :is="renderPage" :key="renderPage" />
+    <template v-slot:fallback> Data is loading... </template>
+  </Suspense>
 </template>
 
 <style>
